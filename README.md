@@ -18,3 +18,20 @@ The Dockerfile must exposes a `<port>` to Openshift automagically create a servi
 
 `minishift openshift service <application-name> --in-browser`
 
+## Scaling and RoundRobin
+
+1. To scale:
+
+`oc scale dc <deployment-name> --replicas=<n>`
+
+2. Edit route configuration to use RoundRobin strategy:
+
+`oc edit rount <deployment-name>`
+
+  1. In edit file replace metadata/annotations with:
+  ```
+  metadata:
+      annotations:
+          haproxy.router.openshift.io/balance: roundrobin
+          haproxy.router.openshift.io/disable_cookies: "true"
+  ```
