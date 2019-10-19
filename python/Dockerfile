@@ -7,5 +7,6 @@ RUN apk --no-cache add --update \
 
 COPY app.py /opt/
 
+EXPOSE 8080
 
 ENTRYPOINT FLASK_RUN_PORT=8080 FLASK_APP=/opt/app.py flask run --host=0.0.0.0
