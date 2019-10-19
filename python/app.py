@@ -1,10 +1,13 @@
 import os
+import socket
 from flask import Flask,request
 app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return "Welcome! you are at {}".format(request.host.split(':')[0])
+    hostname = socket.gethostname()
+    IPAddr = socket.gethostbyname(hostname)
+    return "Welcome! you are at {}".format(IPAddr)
 
 @app.route('/how are you')
 def hello():
