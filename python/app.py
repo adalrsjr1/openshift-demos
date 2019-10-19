@@ -1,10 +1,10 @@
 import os
-from flask import Flask
+from flask import Flask,request
 app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return "Welcome!"
+    return "Welcome! you are at {}".format(request.host.split(':')[0])
 
 @app.route('/how are you')
 def hello():
