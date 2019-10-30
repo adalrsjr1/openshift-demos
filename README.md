@@ -1,6 +1,20 @@
+## Starting cluster
+
+start cluster with at least 12GB
+
+`crc start -m 12288`
+
+## Admin user
+
+`oc adm policy add-cluster-role-to-user cluster-admin <username>`
+
 ## Running applications
 
 The Dockerfile must exposes a `<port>` to Openshift automagically create a service
+
+0. Create project
+
+oc new project <project-name>
 
 1. Create application:
 
@@ -26,7 +40,7 @@ The Dockerfile must exposes a `<port>` to Openshift automagically create a servi
 
 2. Edit route configuration to use RoundRobin strategy:
 
-`oc edit rount <deployment-name>`
+`oc edit route <deployment-name>`
 
   1. In edit file replace metadata/annotations with:
   ```
@@ -35,3 +49,14 @@ The Dockerfile must exposes a `<port>` to Openshift automagically create a servi
           haproxy.router.openshift.io/balance: roundrobin
           haproxy.router.openshift.io/disable_cookies: "true"
   ```
+
+## Running load test with wrk
+
+1. Start Openshift Proxy
+`oc proxy`
+
+2. Create url to the service
+
+`http://localhost:8001/api/v1/namespaces/<project_name>/services/<service_name>:<port>/proxy/`
+
+3. If running wrk trought Docker, set `-network="host"` in `run` command
