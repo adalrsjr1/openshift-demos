@@ -19,6 +19,6 @@
     <!-- The MP JWT configuration that injects the caller's JWT into a ResourceScoped bean for inspection. -->
     <mpJwt id="jwtUserConsumer" keyName="theKeyId" audiences="targetService" issuer="${jwt.issuer}"/>
 
-    <httpOptions maxKeepAliveRequests="-1">
-    <connectionManager  maxPoolSize="40">
+    <httpOptions maxKeepAliveRequests="${MAX_KEEP_ALIVE_REQUESTS}"/>
+    <connectionManager  maxPoolSize="${MAX_POOL_SIZE}"/>
 </server>
