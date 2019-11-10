@@ -20,5 +20,5 @@
     <mpJwt id="jwtUserConsumer" keyName="theKeyId" audiences="targetService" issuer="${jwt.issuer}"/>
 
     <httpOptions maxKeepAliveRequests="${MAX_KEEP_ALIVE_REQUESTS}"/>
-    <connectionManager ... maxPoolSize="${MAX_POOL_SIZE}"/>
+    <connectionManager maxPoolSize="${MAX_POOL_SIZE}"/>
 </server>
